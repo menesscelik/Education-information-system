@@ -1,0 +1,171 @@
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+}
+
+.login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: 0 auto;
+}
+
+.login-box h1 {
+    color: #1a73e8;
+    margin-bottom: 25px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+    outline: none;
+}
+  
+.login-form input:focus {
+    border-color: #1a73e8;
+}
+
+.login-form input::placeholder {
+  color: #999;
+}
+
+.captcha-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.captcha {
+  background-color: #f8f9fa;
+  padding: 12px;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  color: #666;
+  font-style: italic;
+  flex: 1;
+  min-width: 100px;
+}
+
+.captcha-input {
+  flex: 2;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.captcha-input:focus {
+  border-color: #1a73e8;
+}
+
+.captcha-input::placeholder {
+  color: #999;
+  font-size: 13px;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+}
+
+.back-btn,
+.login-submit-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-btn {
+  background-color: white;
+  border: 1px solid #1a73e8;
+  color: #1a73e8;
+}
+
+.back-btn:hover {
+  background-color: #f8f9fa;
+}
+
+.login-submit-btn {
+  background-color: #1a73e8;
+  color: white;
+  border: 1px solid #1a73e8;
+}
+
+.login-submit-btn:hover {
+  background-color: #1557b0;
+}
+
+.register-link {
+  background-color: white;
+  border: 1px solid #1a73e8;
+  color: #1a73e8;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.register-link:hover {
+  background-color: #f8f9fa;
+}
+
+.test-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.test-btn:hover {
+  background-color: #45a049;
+}
+
+.teacher-btn {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.teacher-btn:hover {
+  background-color: #1557b0;
+}

@@ -1,0 +1,110 @@
+.register-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+  }
+  
+  .register-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  .register-box h1 {
+    color: #1a73e8;
+    margin-bottom: 25px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    width: 100%;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+    outline: none;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #1a73e8;
+  }
+  
+  .form-group input::placeholder {
+    color: #999;
+  }
+  
+  .form-group select {
+    background-color: white;
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .form-group select option {
+    color: #333;
+  }
+  
+  /* Buton container'ı ekledim */
+  .button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  /* Buton stillerini güncelledim */
+  .register-btn,
+  .back-btn {
+    flex: 1;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+  
+  .register-btn {
+    background-color: #1a73e8;
+    border: 1px solid #1a73e8;
+    color: white;
+  }
+  
+  .register-btn:hover {
+    background-color: #1557b0;
+  }
+  
+  .back-btn {
+    background-color: white;
+    border: 1px solid #1a73e8;
+    color: #1a73e8;
+  }
+  
+  .back-btn:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Hata durumu için stil */
+  .form-group input:invalid:focus {
+    border-color: #dc3545;
+  }

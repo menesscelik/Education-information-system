@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "registers",
+  "info": {
+    "singularName": "register",
+    "pluralName": "registers",
+    "displayName": "Register",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Sirname": {
+      "type": "string"
+    },
+    "Mail": {
+      "type": "email"
+    },
+    "Role": {
+      "type": "enumeration",
+      "enum": [
+        "Öğrenci",
+        "Öğretmen"
+      ]
+    },
+    "Password": {
+      "type": "password"
+    }
+  }
+}

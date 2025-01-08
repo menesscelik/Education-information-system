@@ -1,0 +1,188 @@
+.view-classes-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.classes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.classes-header h1 {
+  color: #1a73e8;
+  margin: 0;
+}
+
+.create-class-btn {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.2s;
+}
+
+.create-class-btn:hover {
+  background-color: #1557b0;
+}
+
+.classes-tabs {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  margin-right: 10px;
+  position: relative;
+}
+
+.tab-btn.active {
+  color: #1a73e8;
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #1a73e8;
+}
+
+.classes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.class-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.class-card:hover {
+  transform: translateY(-2px);
+}
+
+.class-card.archived {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+}
+
+.class-info h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.class-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.class-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.view-btn,
+.archive-btn,
+.restore-btn,
+.delete-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.view-btn {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+}
+
+.view-btn:hover {
+  background-color: #1557b0;
+}
+
+.archive-btn {
+  background-color: white;
+  border: 1px solid #1a73e8;
+  color: #1a73e8;
+}
+
+.archive-btn:hover {
+  background-color: #f8f9fa;
+}
+
+.restore-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
+
+.restore-btn:hover {
+  background-color: #388E3C;
+}
+
+.delete-btn {
+  background-color: white;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+}
+
+.delete-btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #666;
+  padding: 10px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: #1a73e8;
+}
+
+.back-btn i {
+  font-size: 14px;
+} 
