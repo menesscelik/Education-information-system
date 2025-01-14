@@ -1,5 +1,5 @@
+import { useState, useEffect } from 'react';
 import '../styles/JoinClass.css';
-import { useState } from 'react';
 
 const JoinClass = ({ setCurrentPage }) => {
   const [successMessage, setSuccessMessage] = useState('');
@@ -8,11 +8,11 @@ const JoinClass = ({ setCurrentPage }) => {
     e.preventDefault();
 
     // Kullanıcı bilgilerini al
-    const storedUserId = localStorage.getItem('userId');
     const storedUserName = localStorage.getItem('userName');
     const storedUserSirname = localStorage.getItem('userSirname');
+    const storedUserEmail = localStorage.getItem('userEmail');
 
-    if (!storedUserId || !storedUserName || !storedUserSirname) {
+    if (!storedUserName || !storedUserSirname || !storedUserEmail) {
       alert('Oturum bilgisi bulunamadı! Lütfen tekrar giriş yapın.');
       setCurrentPage('login');
       return;
@@ -22,7 +22,7 @@ const JoinClass = ({ setCurrentPage }) => {
     const classCode = formData.get('classCode');
 
     try {
-      // Sınıfı bulmak için API isteği
+      // Benzersiz koda göre sınıf ID'sini bul
       const classResponse = await fetch(
         `http://localhost:1337/api/classes?filters[Benzersiz][$eq]=${classCode}&populate=*`
       );
@@ -45,7 +45,7 @@ const JoinClass = ({ setCurrentPage }) => {
 
       // Öğrencinin bu sınıfa zaten kaydolup olmadığını kontrol et
       const checkExistingResponse = await fetch(
-        `http://localhost:1337/api/studentlists?filters[StudentName][$eq]=${storedUserName}&filters[StudentSirname][$eq]=${storedUserSirname}&filters[classes][id][$eq]=${classId}`
+        `http://localhost:1337/api/studentlists?filters[Mail][$eq]=${storedUserEmail}&filters[classes][id][$eq]=${classId}&populate=*`
       );
 
       if (!checkExistingResponse.ok) {
@@ -67,6 +67,7 @@ const JoinClass = ({ setCurrentPage }) => {
         data: {
           StudentName: storedUserName,
           StudentSirname: storedUserSirname,
+          Mail: storedUserEmail, // Kullanıcı e-postası
           classes: [
             {
               id: classId, // Many-to-Many ilişki için class ID

@@ -24,11 +24,11 @@
             "target": "api::class.class",
             "inversedBy": "studentlists"
         },
-        "Mail": {
-            "type": "email"
-        },
         "StudentID": {
             "type": "integer"
+        },
+        "Mail": {
+            "type": "string"
         }
     }
 }

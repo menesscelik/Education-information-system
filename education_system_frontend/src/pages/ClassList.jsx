@@ -1,23 +1,21 @@
 import { useState, useEffect } from 'react';
 import '../styles/ClassList.css';
 
-const ClassList = ({ onClose }) => {
+const ClassList = ({ classId, onClose }) => {
   const [students, setStudents] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const storedClassId = localStorage.getItem('selectedClassId');
-        
-        if (!storedClassId) {
+        if (!classId) {
           setError('Sınıf ID bilgisi bulunamadı.');
           return;
         }
 
         // Sadece sınıfa kayıtlı öğrencileri getir
         const response = await fetch(
-          `http://localhost:1337/api/studentlists?filters[classes][id][$eq]=${storedClassId}&populate=*`
+          `http://localhost:1337/api/studentlists?filters[classes][id][$eq]=${classId}&populate=*`
         );
 
         if (!response.ok) {
@@ -33,7 +31,7 @@ const ClassList = ({ onClose }) => {
     };
 
     fetchStudents();
-  }, []);
+  }, [classId]);
 
   return (
     <div className="class-list-modal">

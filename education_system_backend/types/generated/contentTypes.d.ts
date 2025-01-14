@@ -530,7 +530,7 @@ export interface ApiStudentlistStudentlist extends Struct.CollectionTypeSchema {
       'api::studentlist.studentlist'
     > &
       Schema.Attribute.Private;
-    Mail: Schema.Attribute.Email;
+    Mail: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     StudentID: Schema.Attribute.Integer;
     StudentName: Schema.Attribute.String;

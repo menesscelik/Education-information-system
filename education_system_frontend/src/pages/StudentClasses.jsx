@@ -8,33 +8,43 @@ const StudentsClasses = ({ setCurrentPage }) => {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const storedUserEmail = localStorage.getItem('userEmail'); // Öğrenci e-postası
+        const storedUserName = localStorage.getItem('userName'); // Öğrenci adı
+        const storedUserSirname = localStorage.getItem('userSirname'); // Öğrenci soyadı
 
-        if (!storedUserEmail) {
+        if (!storedUserName || !storedUserSirname) {
           setError('Kullanıcı oturumu bulunamadı. Lütfen tekrar giriş yapın.');
+          console.error('Kullanıcı adı veya soyadı bulunamadı. localStorage:', { storedUserName, storedUserSirname });
           return;
         }
 
-        // Strapi API ile öğrencinin `studentlists` bilgilerini çek ve sınıfları `populate` ile getir
-        const response = await fetch(
-          `http://localhost:1337/api/studentlists?filters[Mail][$eq]=${storedUserEmail}&populate=classes`
-        );
+        // API sorgusunun loglanması
+        const apiUrl = `http://localhost:1337/api/studentlists?filters[StudentName][$eq]=${storedUserName}&filters[StudentSirname][$eq]=${storedUserSirname}&populate=classes`;
+        console.log('API URL:', apiUrl);
+
+        // Strapi API ile öğrencinin bilgilerini ve ilişkili sınıfları al
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          const errorDetails = await response.text();
+          console.error('API Hatası:', errorDetails);
+          setError('Dersler yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+          return;
+        }
 
         const data = await response.json();
         console.log('API Yanıtı:', data);
 
-        if (response.ok) {
-          if (!data || !data.data || data.data.length === 0) {
-            setError('Henüz bir sınıfa kayıt olmadınız.');
-            return;
-          }
-
-          // Gelen sınıfları al ve state'e ata
-          const studentClasses = data.data.flatMap((student) => student.classes);
-          setClasses(studentClasses);
-        } else {
-          setError('Dersler yüklenirken bir hata oluştu.');
+        if (!data || !data.data || data.data.length === 0) {
+          setError('Henüz bir sınıfa kayıt olmadınız.');
+          console.warn('API Yanıtı boş:', data);
+          return;
         }
+
+        // Gelen sınıfları al ve state'e ata
+        const studentClasses = data.data.flatMap(
+          (student) => student.classes || []
+        );
+        setClasses(studentClasses);
       } catch (error) {
         console.error('Dersler yüklenirken hata oluştu:', error);
         setError('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
