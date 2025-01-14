@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAssigmentAssigment extends Struct.CollectionTypeSchema {
   collectionName: 'assigments';
   info: {
+    description: '';
     displayName: 'Assigment';
     pluralName: 'assigments';
     singularName: 'assigment';
@@ -384,6 +385,7 @@ export interface ApiAssigmentAssigment extends Struct.CollectionTypeSchema {
     AssigmentDescribe: Schema.Attribute.Text;
     AssigmentName: Schema.Attribute.String;
     classes: Schema.Attribute.Relation<'oneToMany', 'api::class.class'>;
+    ClassID: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

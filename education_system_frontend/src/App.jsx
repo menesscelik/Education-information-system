@@ -9,6 +9,7 @@ import ClassDetail from './pages/ClassDetail';
 import StudentDashboard from './pages/StudentDashboard';
 import JoinClass from './pages/JoinClass';
 import StudentClasses from './pages/StudentClasses';
+import CreateAssignment from './pages/CreateAssignment';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('welcome');
@@ -42,8 +43,11 @@ const App = () => {
       {currentPage === 'studentClasses' && (
         <StudentClasses setCurrentPage={setCurrentPage} />
       )}
+      {currentPage === 'CreateAssignment' && (
+        <CreateAssignment setCurrentPage={setCurrentPage} />
+      )}
     </div>
   );
 };
 
-export default App; 
+export default App;

@@ -123,7 +123,7 @@ const ViewClasses = ({ setCurrentPage, setSelectedClass }) => {
                 <p>{classItem.Aciklama}</p>
               </div>
               <div className="class-actions">
-                <button
+                {/* <button
                   className="view-btn"
                   onClick={(e) => {
                     e.stopPropagation(); // Tıklamanın detaylara gitmesini engelle
@@ -131,7 +131,7 @@ const ViewClasses = ({ setCurrentPage, setSelectedClass }) => {
                   }}
                 >
                   Ders Ayrıntılarını Gör
-                </button>
+                </button> */}
                 <button
                   className="delete-btn"
                   onClick={(e) => {
@@ -141,6 +141,19 @@ const ViewClasses = ({ setCurrentPage, setSelectedClass }) => {
                 >
                   Sil
                 </button>
+                <div className="class-options" >
+                <button 
+                  className="assign-homework-btn"
+                  onClick={() => {
+                    localStorage.setItem('selectedClassId', classItem.id); // Sınıf ID'sini kaydet
+                    setCurrentPage('CreateAssignment');
+                  }}
+                >
+                  Ödev Ver
+                </button>
+                <button className="send-note-btn">Not Gönder</button>
+                <button className="class-list-btn">Sınıf Listesi</button>
+              </div>
               </div>
             </div>
           ))

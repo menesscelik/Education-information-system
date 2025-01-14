@@ -1,0 +1,45 @@
+/* CreateAssignment.css */
+.create-assignment-container {
+    max-width: 600px; /* Maksimum genişlik */
+    margin: 20px auto; /* Ortaya hizalama */
+    padding: 20px; /* İç boşluk */
+    border: 1px solid #ccc; /* Kenarlık */
+    border-radius: 8px; /* Kenar yuvarlama */
+    background-color: #f9f9f9; /* Arka plan rengi */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Gölgelendirme */
+  }
+  
+  .create-assignment-container h1 {
+    text-align: center; /* Başlık ortalanacak */
+  }
+  
+  .create-assignment-container form {
+    display: flex; /* Flexbox kullanarak düzenleme */
+    flex-direction: column; /* Dikey hizalama */
+  }
+  
+  .create-assignment-container label {
+    margin-bottom: 5px; /* Etiketler arasında boşluk */
+  }
+  
+  .create-assignment-container input,
+  .create-assignment-container textarea {
+    margin-bottom: 15px; /* Giriş alanları arasında boşluk */
+    padding: 10px; /* İç boşluk */
+    border: 1px solid #ccc; /* Kenarlık */
+    border-radius: 4px; /* Kenar yuvarlama */
+  }
+  
+  .create-assignment-container button {
+    padding: 10px; /* İç boşluk */
+    background-color: #007bff; /* Arka plan rengi */
+    color: white; /* Yazı rengi */
+    border: none; /* Kenarlık yok */
+    border-radius: 4px; /* Kenar yuvarlama */
+    cursor: pointer; /* İmleç değişimi */
+    transition: background-color 0.3s; /* Hover geçiş efekti */
+  }
+  
+  .create-assignment-container button:hover {
+    background-color: #0056b3; /* Hover durumu için arka plan rengi */
+  }

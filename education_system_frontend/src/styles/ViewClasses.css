@@ -186,3 +186,27 @@
 .back-btn i {
   font-size: 14px;
 } 
+/* ViewClasses.css */
+.class-options {
+  display: flex; /* Butonları yan yana dizmek için flex kullanıyoruz */
+  margin-top: 10px; /* Butonlar arasında boşluk */
+}
+
+.assign-homework-btn,
+.send-note-btn,
+.class-list-btn {
+  margin-right: 10px; /* Butonlar arasında boşluk */
+  padding: 10px 15px; /* Butonların iç boşlukları */
+  background-color: #007bff; /* Buton arka plan rengi */
+  color: white; /* Buton yazı rengi */
+  border: none; /* Kenarlık yok */
+  border-radius: 4px; /* Kenar yuvarlama */
+  cursor: pointer; /* İmleç değişimi */
+  transition: background-color 0.3s; /* Hover geçiş efekti */
+}
+
+.assign-homework-btn:hover,
+.send-note-btn:hover,
+.class-list-btn:hover {
+  background-color: #0056b3; /* Hover durumu için arka plan rengi */
+}

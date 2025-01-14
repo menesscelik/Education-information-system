@@ -4,7 +4,8 @@
     "info": {
         "singularName": "assigment",
         "pluralName": "assigments",
-        "displayName": "Assigment"
+        "displayName": "Assigment",
+        "description": ""
     },
     "options": {
         "draftAndPublish": true
@@ -25,6 +26,9 @@
             "relation": "oneToMany",
             "target": "api::class.class",
             "mappedBy": "assigment"
+        },
+        "ClassID": {
+            "type": "integer"
         }
     }
 }
