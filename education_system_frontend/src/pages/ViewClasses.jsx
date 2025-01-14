@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import '../styles/ViewClasses.css';
+import ClassList from './ClassList';
 
 const ViewClasses = ({ setCurrentPage, setSelectedClass }) => {
   const [classes, setClasses] = useState([]);
   const [error, setError] = useState('');
+  const [showClassList, setShowClassList] = useState(false);
+  const [selectedClassId, setSelectedClassId] = useState(null);
 
   useEffect(() => {
     const fetchClasses = async () => {
@@ -160,7 +163,16 @@ const ViewClasses = ({ setCurrentPage, setSelectedClass }) => {
                 >
                   Not Gönder
                 </button>
-                <button className="class-list-btn">Sınıf Listesi</button>
+                <button 
+                  className="class-list-btn"
+                  onClick={() => {
+                    setSelectedClassId(classItem.id);
+                    localStorage.setItem('selectedClassId', classItem.id); // Sınıf ID'sini localStorage'a kaydet
+                    setShowClassList(true);
+                  }}
+                >
+                  Sınıf Listesi
+                </button>
               </div>
               </div>
             </div>
@@ -171,6 +183,12 @@ const ViewClasses = ({ setCurrentPage, setSelectedClass }) => {
           </div>
         )}
       </div>
+      {showClassList && (
+        <ClassList 
+          classId={selectedClassId}
+          onClose={() => setShowClassList(false)}
+        />
+      )}
     </div>
   );
 };
