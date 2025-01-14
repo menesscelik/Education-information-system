@@ -11,6 +11,11 @@ const StudentDashboard = ({ setCurrentPage }) => {
     setCurrentPage('welcome');
   };
 
+  const handleStudentClasses = () => {
+    // Sınıflar sayfasına yönlendirme
+    setCurrentPage('studentClasses');
+  };
+
   return (
     <div className="student-container">
       <div className="student-header">
@@ -25,7 +30,7 @@ const StudentDashboard = ({ setCurrentPage }) => {
         </button>
         <button 
           className="dashboard-btn"
-          onClick={() => setCurrentPage('studentClasses')}
+          onClick={handleStudentClasses}
         >
           Sınıflarım
         </button>

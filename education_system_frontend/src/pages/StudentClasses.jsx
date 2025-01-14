@@ -1,83 +1,102 @@
-import '../styles/StudentClasses.css';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import '../styles/ViewClasses.css';
 
-const StudentClasses = ({ setCurrentPage }) => {
-  const [classes, setClasses] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
+const StudentsClasses = ({ setCurrentPage }) => {
+  const [classes, setClasses] = useState([]); // Öğrencinin sınıfları
+  const [error, setError] = useState(''); // Hata mesajları
 
   useEffect(() => {
     const fetchClasses = async () => {
-      const storedUserName = localStorage.getItem('userName');
-      const storedUserSirname = localStorage.getItem('userSurname');
-
-      if (!storedUserName || !storedUserSirname) {
-        setErrorMessage('Kullanıcı bilgisi bulunamadı! Lütfen tekrar giriş yapın.');
-        return;
-      }
-
       try {
-        // StudentName ve StudentSirname filtreleme
-        const response = await fetch(
-          `http://localhost:1337/api/studentlists?filters[StudentName][$eq]=${storedUserName}&filters[StudentSirname][$eq]=${storedUserSirname}&populate=classes`
-        );
+        const storedUserEmail = localStorage.getItem('userEmail'); // Öğrenci e-postası
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          console.error('Sınıflar Alınırken Hata:', errorData);
-          setErrorMessage('Sınıflar yüklenirken bir hata oluştu!');
+        if (!storedUserEmail) {
+          setError('Kullanıcı oturumu bulunamadı. Lütfen tekrar giriş yapın.');
           return;
         }
+
+        // Strapi API ile öğrencinin `studentlists` bilgilerini çek ve sınıfları `populate` ile getir
+        const response = await fetch(
+          `http://localhost:1337/api/studentlists?filters[Mail][$eq]=${storedUserEmail}&populate=classes`
+        );
 
         const data = await response.json();
+        console.log('API Yanıtı:', data);
 
-        if (!data || data.data.length === 0) {
-          setErrorMessage('Henüz katıldığınız bir sınıf yok.');
-          return;
+        if (response.ok) {
+          if (!data || !data.data || data.data.length === 0) {
+            setError('Henüz bir sınıfa kayıt olmadınız.');
+            return;
+          }
+
+          // Gelen sınıfları al ve state'e ata
+          const studentClasses = data.data.flatMap((student) => student.classes);
+          setClasses(studentClasses);
+        } else {
+          setError('Dersler yüklenirken bir hata oluştu.');
         }
-
-        // Sınıf bilgilerini ayıkla
-        const classesData = data.data.flatMap((item) =>
-          item.classes.map((classItem) => ({
-            id: classItem.id,
-            Name: classItem.Name,
-            Code: classItem.Benzersiz,
-            Description: classItem.Aciklama,
-          }))
-        );
-
-        setClasses(classesData);
-      } catch (err) {
-        console.error('Sınıflar Yükleme Hatası:', err);
-        setErrorMessage('Bir hata oluştu!');
+      } catch (error) {
+        console.error('Dersler yüklenirken hata oluştu:', error);
+        setError('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
       }
     };
 
     fetchClasses();
   }, []);
 
+  const handleClassClick = (classItem) => {
+    localStorage.setItem('SelectedClassId', classItem.id); // Doğru ID'yi kaydediyoruz
+    setCurrentPage('classDetail');
+  };
+
   return (
-    <div className="student-classes-container">
-      <h1>Derslerim</h1>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      {classes.length === 0 ? (
-        <p>Henüz katıldığınız bir sınıf yok.</p>
-      ) : (
-        <div className="class-cards">
-          {classes.map((studentClass) => (
-            <div className="class-card" key={studentClass.id}>
-              <h2>{studentClass.Name}</h2>
-              <p>Ders Kodu: {studentClass.Code}</p>
-              <p>{studentClass.Description}</p>
-              <button className="details-button" onClick={() => alert(`Ders: ${studentClass.Name}`)}>
-                Ders Ayrıntılarını Gör
-              </button>
-            </div>
-          ))}
+    <div className="view-classes-container">
+      <div className="page-header">
+        <button
+          className="back-btn"
+          onClick={() => setCurrentPage('welcome')}
+        >
+          <i className="fas fa-arrow-left"></i> Geri Dön
+        </button>
+        <div className="classes-header">
+          <h1>Derslerim</h1>
         </div>
-      )}
-      <button onClick={() => setCurrentPage('student')}>Geri Dön</button>
+      </div>
+
+      <div className="classes-list">
+        {error && <p className="error-message">{error}</p>}
+        {classes.length > 0 ? (
+          classes.map((classItem) => (
+            <div 
+              key={classItem.id} 
+              className="class-card"
+            >
+              <div className="class-info">
+                <h3>{classItem.Name}</h3>
+                <p>Ders Kodu: {classItem.Benzersiz}</p>
+                <p>{classItem.Aciklama}</p>
+              </div>
+              <div className="class-actions">
+                <button
+                  className="view-btn"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Tıklamanın detaylara gitmesini engelle
+                    handleClassClick(classItem);
+                  }}
+                >
+                  Ders Ayrıntılarını Gör
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="empty-state">
+            <p>Henüz ders bulunmamaktadır.</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default StudentClasses;
+export default StudentsClasses;
