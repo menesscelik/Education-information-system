@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "assigments",
+  "info": {
+    "singularName": "assigment",
+    "pluralName": "assigments",
+    "displayName": "Assigment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "AssigmentName": {
+      "type": "string"
+    },
+    "Assigment_Date": {
+      "type": "datetime"
+    },
+    "AssigmentDescribe": {
+      "type": "text"
+    },
+    "classes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::class.class",
+      "mappedBy": "assigment"
+    }
+  }
+}

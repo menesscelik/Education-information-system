@@ -1,0 +1,36 @@
+.assignments-list {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.assignments-list h2 {
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #dc3545;
+  padding-bottom: 5px;
+}
+
+.assignments-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.assignments-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.assignments-list li:last-child {
+  border-bottom: none;
+}
+
+.assignments-list strong {
+  color: #dc3545;
+  margin-right: 5px;
+}
+
+.assignments-list li:hover {
+  background-color: #f8f9fa;
+} 

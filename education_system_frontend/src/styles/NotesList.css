@@ -1,0 +1,38 @@
+.notes-list {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notes-list h2 {
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #28a745;
+  padding-bottom: 5px;
+}
+
+.notes-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.notes-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.notes-list li:last-child {
+  border-bottom: none;
+}
+
+.notes-list a {
+  color: #007bff;
+  text-decoration: none;
+  display: block;
+}
+
+.notes-list a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+} 

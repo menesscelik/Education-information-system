@@ -369,6 +369,107 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAssigmentAssigment extends Struct.CollectionTypeSchema {
+  collectionName: 'assigments';
+  info: {
+    displayName: 'Assigment';
+    pluralName: 'assigments';
+    singularName: 'assigment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Assigment_Date: Schema.Attribute.DateTime;
+    AssigmentDescribe: Schema.Attribute.Text;
+    AssigmentName: Schema.Attribute.String;
+    classes: Schema.Attribute.Relation<'oneToMany', 'api::class.class'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::assigment.assigment'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiClassClass extends Struct.CollectionTypeSchema {
+  collectionName: 'classes';
+  info: {
+    description: '';
+    displayName: 'Class';
+    pluralName: 'classes';
+    singularName: 'class';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Aciklama: Schema.Attribute.Text;
+    assigment: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::assigment.assigment'
+    >;
+    Benzersiz: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::class.class'> &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    nots: Schema.Attribute.Relation<'oneToMany', 'api::not.not'>;
+    publishedAt: Schema.Attribute.DateTime;
+    register: Schema.Attribute.Relation<'manyToOne', 'api::register.register'>;
+    studentlists: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::studentlist.studentlist'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNotNot extends Struct.CollectionTypeSchema {
+  collectionName: 'nots';
+  info: {
+    description: '';
+    displayName: 'Not';
+    pluralName: 'nots';
+    singularName: 'not';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    class: Schema.Attribute.Relation<'manyToOne', 'api::class.class'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::not.not'> &
+      Schema.Attribute.Private;
+    NotDescirbe: Schema.Attribute.Text;
+    NotFile: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    NotTitle: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiRegisterRegister extends Struct.CollectionTypeSchema {
   collectionName: 'registers';
   info: {
@@ -381,6 +482,7 @@ export interface ApiRegisterRegister extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    classes: Schema.Attribute.Relation<'oneToMany', 'api::class.class'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -392,7 +494,7 @@ export interface ApiRegisterRegister extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Mail: Schema.Attribute.Email;
     Name: Schema.Attribute.String;
-    Password: Schema.Attribute.Password;
+    Password: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     Role: Schema.Attribute.Enumeration<
       ['\u00D6\u011Frenci', '\u00D6\u011Fretmen']
@@ -404,35 +506,31 @@ export interface ApiRegisterRegister extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiUsersRegisteredUsersRegistered
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'users_registereds';
+export interface ApiStudentlistStudentlist extends Struct.CollectionTypeSchema {
+  collectionName: 'studentlists';
   info: {
-    displayName: 'UsersRegistered';
-    pluralName: 'users-registereds';
-    singularName: 'users-registered';
+    description: '';
+    displayName: 'Studentlist';
+    pluralName: 'studentlists';
+    singularName: 'studentlist';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    classes: Schema.Attribute.Relation<'manyToMany', 'api::class.class'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Email: Schema.Attribute.Email;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::users-registered.users-registered'
+      'api::studentlist.studentlist'
     > &
       Schema.Attribute.Private;
-    Name: Schema.Attribute.String;
-    Password: Schema.Attribute.Password;
     publishedAt: Schema.Attribute.DateTime;
-    Role: Schema.Attribute.Enumeration<
-      ['\u00D6\u011Fretmen', '\u00D6\u011Frenci']
-    >;
-    Surname: Schema.Attribute.String;
+    StudentName: Schema.Attribute.String;
+    StudentSirname: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -948,8 +1046,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::assigment.assigment': ApiAssigmentAssigment;
+      'api::class.class': ApiClassClass;
+      'api::not.not': ApiNotNot;
       'api::register.register': ApiRegisterRegister;
-      'api::users-registered.users-registered': ApiUsersRegisteredUsersRegistered;
+      'api::studentlist.studentlist': ApiStudentlistStudentlist;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

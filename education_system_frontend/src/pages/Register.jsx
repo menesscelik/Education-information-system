@@ -20,7 +20,7 @@ const Register = ({ setCurrentPage }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `95ac8d5eacf9bef8edf1a5cadfb2f36ff62ee3a34b88a7e5bd1e0f2a2b1043e3a13967ad174b139b214e42599cab3ad3bb021747b4bfe96b2f847b470ac937127b987e6a11f60daf970911bffad3b20e6264b02106a032eef0dad11fdee7ef930943edd118e32e4520cf3908380f922a4116bbfbac9029be4b1690dbd2cbef0d`,
+          Authorization: `0e321d6972afa9c4a11570f5fadfae0da10bdcb37adb9b837b35ece1d5a032acff55a0b5098209aab04c8596ce9f4ea794a6cceb8b04304f0f367ea95ef7e7e0ba16d7daa2f8354a8468a4ca29e4e37fc8af996bca1469913145957b6f6fdb2abd68ed3b94554e17c43957912263dd2fe584300a3f6569aa78a3f75823f14c33`,
         },
         body: JSON.stringify({ data }), // Strapi formatına uygun
       });

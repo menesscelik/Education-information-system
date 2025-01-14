@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nots",
+  "info": {
+    "singularName": "not",
+    "pluralName": "nots",
+    "displayName": "Not",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "NotTitle": {
+      "type": "string"
+    },
+    "NotDescirbe": {
+      "type": "text"
+    },
+    "NotFile": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "class": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::class.class",
+      "inversedBy": "nots"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "studentlists",
+  "info": {
+    "singularName": "studentlist",
+    "pluralName": "studentlists",
+    "displayName": "Studentlist",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "StudentName": {
+      "type": "string"
+    },
+    "StudentSirname": {
+      "type": "string"
+    },
+    "classes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::class.class",
+      "inversedBy": "studentlists"
+    }
+  }
+}

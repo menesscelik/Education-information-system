@@ -29,7 +29,13 @@
             ]
         },
         "Password": {
-            "type": "password"
+            "type": "string"
+        },
+        "classes": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::class.class",
+            "mappedBy": "register"
         }
     }
 }

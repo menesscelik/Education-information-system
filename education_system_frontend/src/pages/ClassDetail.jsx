@@ -1,351 +1,123 @@
-import { useState } from 'react'
-import ShareNoteModal from '../components/ShareNoteModal'
-import StudentModal from '../components/StudentModal'
-import HomeworkModal from '../components/HomeworkModal'
-import '../styles/ClassDetail.css'
+import { useState, useEffect } from 'react';
+import '../styles/ClassDetail.css';
 
 const ClassDetail = ({ setCurrentPage }) => {
-  const [activeTab, setActiveTab] = useState('homework')
-  const [isNoteModalOpen, setIsNoteModalOpen] = useState(false)
-  const [isStudentModalOpen, setIsStudentModalOpen] = useState(false)
-  const [isHomeworkModalOpen, setIsHomeworkModalOpen] = useState(false)
-  const [notes, setNotes] = useState([
-    { id: 1, title: 'Ders Notu 1', date: '2024-02-15', description: 'Hafta 1 notları', fileUrl: '#' },
-    { id: 2, title: 'Ders Notu 2', date: '2024-02-16', description: 'Hafta 2 notları', fileUrl: '#' },
-  ])
-  const [students, setStudents] = useState([
-    { id: 1, name: 'Ahmet Yılmaz', email: 'ahmet@example.com', studentNumber: '2024001' },
-    { id: 2, name: 'Ayşe Demir', email: 'ayse@example.com', studentNumber: '2024002' },
-    { id: 3, name: 'Mehmet Kaya', email: 'mehmet@example.com', studentNumber: '2024003' },
-  ])
-  const [homeworks, setHomeworks] = useState([
-    { 
-      id: 1, 
-      title: 'Hafta 1 Ödevi', 
-      description: 'İlk hafta konularıyla ilgili alıştırmalar',
-      dueDate: '2024-02-20', 
-      status: 'active',
-      fileUrl: null 
-    },
-    { 
-      id: 2, 
-      title: 'Hafta 2 Ödevi', 
-      description: 'İkinci hafta konularıyla ilgili ödevler',
-      dueDate: '2024-02-27', 
-      status: 'active',
-      fileUrl: null 
-    },
-  ])
+  const [classDetails, setClassDetails] = useState(null);
+  const [error, setError] = useState('');
+  const [students, setStudents] = useState([]);
+  const [notes, setNotes] = useState([]);
+  const [assignments, setAssignments] = useState([]);
 
-  const handleNoteSubmit = async (formData) => {
-    try {
-      // API çağrısı yapılacak
-      // const response = await fetch('API_URL/notes', {
-      //   method: 'POST',
-      //   body: formData
-      // })
-      // const data = await response.json()
-
-      // Şimdilik manuel olarak yeni not ekliyoruz
-      const newNote = {
-        id: notes.length + 1,
-        title: formData.get('title'),
-        description: formData.get('description'),
-        date: new Date().toISOString().split('T')[0],
-        fileUrl: URL.createObjectURL(formData.get('file'))
+  useEffect(() => {
+    const fetchClassDetails = async () => {
+      try {
+        const classId = localStorage.getItem('SelectedClassId');
+        console.log('Class ID:', classId); // Debug için log
+    
+        if (!classId) {
+          setError('Seçilen sınıf bilgisi bulunamadı. Lütfen geri dönüp tekrar deneyin.');
+          return;
+        }
+    
+        // Filters ile API isteği
+        const response = await fetch(
+          `http://localhost:1337/api/classes?filters[id][$eq]=${classId}&populate=*`
+        );
+        console.log('API URL:', `http://localhost:1337/api/classes?filters[id][$eq]=${classId}&populate=*`);
+    
+        const data = await response.json();
+        console.log('API Response:', data); // Debug için yanıtı kontrol edin
+    
+        if (response.ok && data.data.length > 0) {
+          setClassDetails(data.data[0]); // İlk sonucu al
+        } else {
+          setError('Sınıf detayları alınırken bir hata oluştu.');
+        }
+      } catch (error) {
+        console.error('Hata:', error);
+        setError('Bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
       }
+    };
+    
 
-      setNotes([...notes, newNote])
-    } catch (error) {
-      console.error('Not paylaşılırken hata oluştu:', error)
-    }
-  }
+    fetchClassDetails();
+  }, []);
 
-  const handleDeleteNote = async (noteId) => {
-    try {
-      // API çağrısı yapılacak
-      // await fetch(`API_URL/notes/${noteId}`, {
-      //   method: 'DELETE'
-      // })
-
-      setNotes(notes.filter(note => note.id !== noteId))
-    } catch (error) {
-      console.error('Not silinirken hata oluştu:', error)
-    }
-  }
-
-  const handleAddStudent = async (studentData) => {
-    try {
-      // API çağrısı yapılacak
-      // const response = await fetch('API_URL/students', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(studentData)
-      // })
-      // const data = await response.json()
-
-      // Şimdilik manuel olarak yeni öğrenci ekliyoruz
-      const newStudent = {
-        id: students.length + 1,
-        ...studentData
-      }
-      setStudents([...students, newStudent])
-    } catch (error) {
-      console.error('Öğrenci eklenirken hata oluştu:', error)
-    }
-  }
-
-  const handleRemoveStudent = async (studentId) => {
-    try {
-      // API çağrısı yapılacak
-      // await fetch(`API_URL/students/${studentId}`, {
-      //   method: 'DELETE'
-      // })
-
-      const confirmed = window.confirm('Bu öğrenciyi dersten çıkarmak istediğinize emin misiniz?')
-      if (confirmed) {
-        setStudents(students.filter(student => student.id !== studentId))
-      }
-    } catch (error) {
-      console.error('Öğrenci silinirken hata oluştu:', error)
-    }
-  }
-
-  const handleAddHomework = async (formData) => {
-    try {
-      // API çağrısı yapılacak
-      // const response = await fetch('API_URL/homeworks', {
-      //   method: 'POST',
-      //   body: formData
-      // })
-      // const data = await response.json()
-
-      const newHomework = {
-        id: homeworks.length + 1,
-        title: formData.get('title'),
-        description: formData.get('description'),
-        dueDate: formData.get('dueDate'),
-        status: 'active',
-        fileUrl: formData.get('file') ? URL.createObjectURL(formData.get('file')) : null
-      }
-
-      setHomeworks([...homeworks, newHomework])
-    } catch (error) {
-      console.error('Ödev eklenirken hata oluştu:', error)
-    }
-  }
-
-  const handleDeleteHomework = async (homeworkId) => {
-    try {
-      // API çağrısı yapılacak
-      // await fetch(`API_URL/homeworks/${homeworkId}`, {
-      //   method: 'DELETE'
-      // })
-
-      const confirmed = window.confirm('Bu ödevi silmek istediğinize emin misiniz?')
-      if (confirmed) {
-        setHomeworks(homeworks.filter(hw => hw.id !== homeworkId))
-      }
-    } catch (error) {
-      console.error('Ödev silinirken hata oluştu:', error)
-    }
-  }
-
-  // Tab content kısmındaki notes bölümünü güncelleyelim
-  const NotesSection = () => (
-    <div className="notes-section">
-      <div className="section-header">
-        <h2>Ders Notları</h2>
-        <button 
-          className="add-btn"
-          onClick={() => setIsNoteModalOpen(true)}
-        >
-          Not Paylaş
+  if (error) {
+    return (
+      <div className="class-detail-container">
+        <p className="error-message">{error}</p>
+        <button className="back-btn" onClick={() => setCurrentPage('viewClasses')}>
+          Geri Dön
         </button>
       </div>
-      <div className="notes-list">
-        {notes.map(note => (
-          <div key={note.id} className="note-card">
-            <div className="note-info">
-              <h3>{note.title}</h3>
-              <p>{note.description}</p>
-              <p className="note-date">Paylaşım Tarihi: {note.date}</p>
-            </div>
-            <div className="note-actions">
-              <a 
-                href={note.fileUrl} 
-                className="download-btn" 
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                İndir
-              </a>
-              <button 
-                className="delete-btn"
-                onClick={() => handleDeleteNote(note.id)}
-              >
-                Sil
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-      <ShareNoteModal
-        isOpen={isNoteModalOpen}
-        onClose={() => setIsNoteModalOpen(false)}
-        onSubmit={handleNoteSubmit}
-      />
-    </div>
-  )
+    );
+  }
 
-  // Students section'ı güncelleyelim
-  const StudentsSection = () => (
-    <div className="students-section">
-      <div className="section-header">
-        <h2>Öğrenci Listesi</h2>
-        <button 
-          className="add-btn"
-          onClick={() => setIsStudentModalOpen(true)}
-        >
-          Öğrenci Ekle
-        </button>
+  if (!classDetails) {
+    return (
+      <div className="class-detail-container">
+        <p>Yükleniyor...</p>
       </div>
-      <div className="students-list">
-        <table className="students-table">
-          <thead>
-            <tr>
-              <th>Öğrenci No</th>
-              <th>Ad Soyad</th>
-              <th>E-posta</th>
-              <th>İşlemler</th>
-            </tr>
-          </thead>
-          <tbody>
-            {students.map(student => (
-              <tr key={student.id}>
-                <td>{student.studentNumber}</td>
-                <td>{student.name}</td>
-                <td>{student.email}</td>
-                <td>
-                  <button 
-                    className="remove-btn"
-                    onClick={() => handleRemoveStudent(student.id)}
-                  >
-                    Çıkar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <StudentModal
-        isOpen={isStudentModalOpen}
-        onClose={() => setIsStudentModalOpen(false)}
-        onSubmit={handleAddStudent}
-      />
-    </div>
-  )
-
-  // Homework section'ı güncelleyelim
-  const HomeworkSection = () => (
-    <div className="homework-section">
-      <div className="section-header">
-        <h2>Ödevler</h2>
-        <button 
-          className="add-btn"
-          onClick={() => setIsHomeworkModalOpen(true)}
-        >
-          Yeni Ödev Ekle
-        </button>
-      </div>
-      <div className="homework-list">
-        {homeworks.map(homework => (
-          <div key={homework.id} className="homework-card">
-            <div className="homework-info">
-              <h3>{homework.title}</h3>
-              <p className="homework-description">{homework.description}</p>
-              <p className="homework-due-date">
-                Teslim Tarihi: {new Date(homework.dueDate).toLocaleDateString('tr-TR')}
-              </p>
-            </div>
-            <div className="homework-actions">
-              {homework.fileUrl && (
-                <a 
-                  href={homework.fileUrl} 
-                  className="download-btn" 
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Dosyayı İndir
-                </a>
-              )}
-              <button 
-                className="delete-btn"
-                onClick={() => handleDeleteHomework(homework.id)}
-              >
-                Sil
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-      <HomeworkModal
-        isOpen={isHomeworkModalOpen}
-        onClose={() => setIsHomeworkModalOpen(false)}
-        onSubmit={handleAddHomework}
-      />
-    </div>
-  )
+    );
+  }
 
   return (
     <div className="class-detail-container">
       <div className="class-detail-header">
-        <h1>Matematik 101</h1>
-        <button 
-          className="back-btn"
-          onClick={() => setCurrentPage('viewClasses')}
-        >
+        <h1>{classDetails.attributes.Name}</h1>
+        <p>Ders Kodu: {classDetails.attributes.Benzersiz}</p>
+        <p>Açıklama: {classDetails.attributes.Aciklama}</p>
+        <button className="back-btn" onClick={() => setCurrentPage('viewClasses')}>
           Geri Dön
         </button>
       </div>
 
       <div className="class-detail-content">
-        <div className="tab-buttons">
-          <button 
-            className={`tab-btn ${activeTab === 'homework' ? 'active' : ''}`}
-            onClick={() => setActiveTab('homework')}
-          >
-            Ödevler
-          </button>
-          <button 
-            className={`tab-btn ${activeTab === 'students' ? 'active' : ''}`}
-            onClick={() => setActiveTab('students')}
-          >
-            Öğrenci Listesi
-          </button>
-          <button 
-            className={`tab-btn ${activeTab === 'notes' ? 'active' : ''}`}
-            onClick={() => setActiveTab('notes')}
-          >
-            Ders Notları
-          </button>
-        </div>
+        <h2>Öğrenci Listesi</h2>
+        {students.length > 0 ? (
+          <ul>
+            {students.map((student, index) => (
+              <li key={index}>
+                {student.StudentName} {student.StudentSirname} ({student.StudentID})
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Bu sınıfta henüz öğrenci yok.</p>
+        )}
 
-        <div className="tab-content">
-          {activeTab === 'homework' && <HomeworkSection />}
+        <h2>Ders Notları</h2>
+        {notes.length > 0 ? (
+          <ul>
+            {notes.map((note, index) => (
+              <li key={index}>
+                <a href={note.NotFile} target="_blank" rel="noopener noreferrer">
+                  {note.NotTitle} - {note.NotDescribe}
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Bu sınıf için henüz not eklenmemiş.</p>
+        )}
 
-          {activeTab === 'students' && <StudentsSection />}
-
-          {activeTab === 'notes' && <NotesSection />}
-        </div>
+        <h2>Ödevler</h2>
+        {assignments.length > 0 ? (
+          <ul>
+            {assignments.map((assignment, index) => (
+              <li key={index}>
+                <strong>{assignment.AssignmentName}:</strong> {assignment.AssignmentDescribe} - Teslim Tarihi: 
+                {new Date(assignment.Assignment_Date).toLocaleDateString('tr-TR')}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Bu sınıf için henüz ödev eklenmemiş.</p>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ClassDetail 
+export default ClassDetail;
