@@ -151,7 +151,15 @@ const ViewClasses = ({ setCurrentPage, setSelectedClass }) => {
                 >
                   Ödev Ver
                 </button>
-                <button className="send-note-btn">Not Gönder</button>
+                <button 
+                  className="send-note-btn"
+                  onClick={() => {
+                    localStorage.setItem('selectedClassId', classItem.id);
+                    setCurrentPage('SendNote');
+                  }}
+                >
+                  Not Gönder
+                </button>
                 <button className="class-list-btn">Sınıf Listesi</button>
               </div>
               </div>

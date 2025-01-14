@@ -10,10 +10,20 @@ import StudentDashboard from './pages/StudentDashboard';
 import JoinClass from './pages/JoinClass';
 import StudentClasses from './pages/StudentClasses';
 import CreateAssignment from './pages/CreateAssignment';
+import SendNote from './pages/SendNote';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('welcome');
   const [selectedClass, setSelectedClass] = useState(null);
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'SendNote':
+        return <SendNote setCurrentPage={setCurrentPage} />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="App">
@@ -46,6 +56,7 @@ const App = () => {
       {currentPage === 'CreateAssignment' && (
         <CreateAssignment setCurrentPage={setCurrentPage} />
       )}
+      {renderPage()}
     </div>
   );
 };

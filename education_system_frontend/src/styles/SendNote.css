@@ -1,0 +1,117 @@
+.send-note-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.back-btn {
+  padding: 8px 15px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.note-input-section {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.note-header {
+  margin-bottom: 20px;
+}
+
+.note-header h3 {
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.note-description {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.title-input {
+  margin-bottom: 15px;
+}
+
+.title-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.title-field:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.note-textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: 1.5;
+  min-height: 200px;
+}
+
+.note-textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.submit-btn {
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: flex-end;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+.error-message {
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.success-message {
+  padding: 10px;
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 4px;
+  margin-bottom: 15px;
+} 
