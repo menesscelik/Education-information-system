@@ -1,0 +1,24 @@
+.admin-panel-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.admin-buttons {
+  margin-top: 20px;
+}
+
+.admin-buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-buttons button:hover {
+  background-color: #45a049;
+} 

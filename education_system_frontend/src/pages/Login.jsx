@@ -37,6 +37,8 @@ const Login = ({ setCurrentPage }) => {
             setCurrentPage('teacher');
           } else if (user.Role === 'Öğrenci') {
             setCurrentPage('student');
+          } else if (user.Role === 'Admin') {
+            setCurrentPage('adminPanel'); // Admin paneline yönlendir
           }
 
           alert('Giriş başarılı!');

@@ -13,6 +13,9 @@ import CreateAssignment from './pages/CreateAssignment';
 import SendNote from './pages/SendNote';
 import HomeworkList from './pages/HomeworkList';
 import ClassNotes from './pages/ClassNotes';
+import AdminPanel from './pages/AdminPanel';
+import AdminClasses from './pages/AdminClasses';
+import AdminRegisters from './pages/AdminRegisters';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('welcome');
@@ -58,6 +61,12 @@ const App = () => {
         return <HomeworkList setCurrentPage={setCurrentPage} />;
       case 'classNotes':
         return <ClassNotes setCurrentPage={setCurrentPage} />;
+      case 'adminPanel':
+        return <AdminPanel setCurrentPage={setCurrentPage} />;
+      case 'adminClasses':
+        return <AdminClasses />;
+      case 'adminRegisters':
+        return <AdminRegisters setCurrentPage={setCurrentPage} />;
       default:
         return null;
     }

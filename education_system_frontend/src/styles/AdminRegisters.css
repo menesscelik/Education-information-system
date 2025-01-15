@@ -1,0 +1,54 @@
+.admin-registers-container {
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd; /* Kenar çizgisi */
+  border-radius: 8px; /* Kenar yuvarlama */
+  background-color: #f9f9f9; /* Arka plan rengi */
+}
+
+.admin-registers-container h1 {
+  margin-bottom: 20px;
+  color: #333; /* Başlık rengi */
+}
+
+.registers-list {
+  display: flex;
+  flex-direction: column; /* Dikey olarak sıralama */
+  align-items: center; /* Ortalamak için */
+}
+
+.register-card {
+  margin: 10px 0;
+  padding: 15px;
+  border: 1px solid #ccc; /* Kullanıcı kutusu kenar çizgisi */
+  border-radius: 5px; /* Kullanıcı kutusu kenar yuvarlama */
+  background-color: #fff; /* Kullanıcı kutusu arka plan rengi */
+  width: 80%; /* Genişlik ayarı */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Gölgelendirme efekti */
+  display: flex; /* Flexbox ile düzenleme */
+  flex-direction: column; /* Dikey düzenleme */
+  align-items: flex-start; /* Sola yasla */
+}
+
+.register-card strong {
+  color: #333; /* İsim ve soyisim rengi */
+}
+
+.register-card p {
+  margin: 5px 0; /* Paragraflar için üst ve alt boşluk */
+}
+
+.back-button {
+  margin-top: 20px; /* Geri dön butonu için üst boşluk */
+  padding: 10px 15px;
+  background-color: #4CAF50; /* Geri dön butonu rengi */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #45a049; /* Geri dön butonu hover rengi */
+} 
