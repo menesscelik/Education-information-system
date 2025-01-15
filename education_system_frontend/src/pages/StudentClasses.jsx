@@ -10,6 +10,7 @@ const StudentsClasses = ({ setCurrentPage }) => {
       try {
         const storedUserName = localStorage.getItem('userName'); // Öğrenci adı
         const storedUserSirname = localStorage.getItem('userSirname'); // Öğrenci soyadı
+        
 
         if (!storedUserName || !storedUserSirname) {
           setError('Kullanıcı oturumu bulunamadı. Lütfen tekrar giriş yapın.');
@@ -54,10 +55,22 @@ const StudentsClasses = ({ setCurrentPage }) => {
     fetchClasses();
   }, []);
 
-  const handleClassClick = (classItem) => {
-    localStorage.setItem('SelectedClassId', classItem.id); // Doğru ID'yi kaydediyoruz
-    setCurrentPage('classDetail');
-  };
+  const handleHomeworkClick = (classItem) => {
+    localStorage.setItem('SelectedClassDocumentId', classItem.documentId);
+    setCurrentPage('homeworkList');
+};
+
+// const handleNotesClick = (classItem) => {
+//   localStorage.setItem('SelectedClassId', classItem.id);
+//   setCurrentPage('classNotes'); // ClassNotes bileşenine yönlendirme
+// };
+const handleNotesClick = (classItem) => {
+  // Seçilen sınıfın documentId'sini kaydet
+  localStorage.setItem('SelectedClassDocumentId', classItem.documentId);
+  setCurrentPage('classNotes'); // ClassNotes bileşenine yönlendirme
+};
+
+
 
   return (
     <div className="view-classes-container">
@@ -88,13 +101,22 @@ const StudentsClasses = ({ setCurrentPage }) => {
               </div>
               <div className="class-actions">
                 <button
-                  className="view-btn"
+                  className="homework-btn"
                   onClick={(e) => {
-                    e.stopPropagation(); // Tıklamanın detaylara gitmesini engelle
-                    handleClassClick(classItem);
+                    e.stopPropagation();
+                    handleHomeworkClick(classItem);
                   }}
                 >
-                  Ders Ayrıntılarını Gör
+                  Ödevleri Görüntüle
+                </button>
+                <button
+                  className="notes-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNotesClick(classItem);
+                  }}
+                >
+                  Ders Notları
                 </button>
               </div>
             </div>

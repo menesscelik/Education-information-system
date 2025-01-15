@@ -11,6 +11,8 @@ import JoinClass from './pages/JoinClass';
 import StudentClasses from './pages/StudentClasses';
 import CreateAssignment from './pages/CreateAssignment';
 import SendNote from './pages/SendNote';
+import HomeworkList from './pages/HomeworkList';
+import ClassNotes from './pages/ClassNotes';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('welcome');
@@ -18,8 +20,44 @@ const App = () => {
 
   const renderPage = () => {
     switch (currentPage) {
+      case 'welcome':
+        return <Welcome setCurrentPage={setCurrentPage} />;
+      case 'register':
+        return <Register setCurrentPage={setCurrentPage} />;
+      case 'login':
+        return <Login setCurrentPage={setCurrentPage} />;
+      case 'teacher':
+        return <TeacherDashboard setCurrentPage={setCurrentPage} />;
+      case 'createClass':
+        return <CreateClass setCurrentPage={setCurrentPage} />;
+      case 'viewClasses':
+        return (
+          <ViewClasses 
+            setCurrentPage={setCurrentPage} 
+            setSelectedClass={setSelectedClass} 
+          />
+        );
+      case 'classDetail':
+        return (
+          <ClassDetail 
+            setCurrentPage={setCurrentPage} 
+            selectedClass={selectedClass} 
+          />
+        );
+      case 'student':
+        return <StudentDashboard setCurrentPage={setCurrentPage} />;
+      case 'joinClass':
+        return <JoinClass setCurrentPage={setCurrentPage} />;
+      case 'studentClasses':
+        return <StudentClasses setCurrentPage={setCurrentPage} />;
+      case 'CreateAssignment':
+        return <CreateAssignment setCurrentPage={setCurrentPage} />;
       case 'SendNote':
         return <SendNote setCurrentPage={setCurrentPage} />;
+      case 'homeworkList':
+        return <HomeworkList setCurrentPage={setCurrentPage} />;
+      case 'classNotes':
+        return <ClassNotes setCurrentPage={setCurrentPage} />;
       default:
         return null;
     }
@@ -27,35 +65,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {currentPage === 'welcome' && <Welcome setCurrentPage={setCurrentPage} />}
-      {currentPage === 'register' && <Register setCurrentPage={setCurrentPage} />}
-      {currentPage === 'login' && <Login setCurrentPage={setCurrentPage} />}
-      {currentPage === 'teacher' && <TeacherDashboard setCurrentPage={setCurrentPage} />}
-      {currentPage === 'createClass' && <CreateClass setCurrentPage={setCurrentPage} />}
-      {currentPage === 'viewClasses' && (
-        <ViewClasses 
-          setCurrentPage={setCurrentPage} 
-          setSelectedClass={setSelectedClass} 
-        />
-      )}
-      {currentPage === 'classDetail' && (
-        <ClassDetail 
-          setCurrentPage={setCurrentPage} 
-          selectedClass={selectedClass} 
-        />
-      )}
-      {currentPage === 'student' && (
-        <StudentDashboard setCurrentPage={setCurrentPage} />
-      )}
-      {currentPage === 'joinClass' && (
-        <JoinClass setCurrentPage={setCurrentPage} />
-      )}
-      {currentPage === 'studentClasses' && (
-        <StudentClasses setCurrentPage={setCurrentPage} />
-      )}
-      {currentPage === 'CreateAssignment' && (
-        <CreateAssignment setCurrentPage={setCurrentPage} />
-      )}
       {renderPage()}
     </div>
   );

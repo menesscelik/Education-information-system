@@ -453,6 +453,7 @@ export interface ApiNotNot extends Struct.CollectionTypeSchema {
   };
   attributes: {
     class: Schema.Attribute.Relation<'manyToOne', 'api::class.class'>;
+    ClassID: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

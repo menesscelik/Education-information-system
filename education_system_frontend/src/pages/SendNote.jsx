@@ -31,6 +31,7 @@ const SendNote = ({ setCurrentPage }) => {
       setUploading(true);
       setError('');
       const classId = localStorage.getItem('selectedClassId');
+      const className = localStorage.getItem('selectedClassName');
 
       if (!classId) {
         setError('Sınıf bilgisi bulunamadı.');
@@ -66,8 +67,9 @@ const SendNote = ({ setCurrentPage }) => {
           data: {
             NotTitle: title,
             NotDescirbe: note,
-            class: classId, // İlgili sınıfın ID'si
+            class: classId,
             NotFile: fileUrl,
+            ClassID: classId,
           },
         }),
       });

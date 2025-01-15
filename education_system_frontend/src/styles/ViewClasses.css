@@ -261,3 +261,30 @@
   max-height: 80vh;
   overflow-y: auto;
 }
+
+.homework-btn, .grades-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.homework-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.grades-btn {
+  background-color: #2196F3;
+  color: white;
+}
+
+.homework-btn:hover {
+  background-color: #45a049;
+}
+
+.grades-btn:hover {
+  background-color: #1976D2;
+}
