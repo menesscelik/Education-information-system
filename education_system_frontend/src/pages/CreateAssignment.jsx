@@ -22,7 +22,7 @@ const CreateAssignment = ({ setCurrentPage }) => {
         AssigmentDescribe: description,
         Assigment_Date: assignmentDate,
         ClassID: parseInt(classId),
-        classes: [], // Eğer sınıf ilişkisi gerekliyse boş dizi olarak başlanabilir
+        class: classId, // İlişkiyi sağlamak için sınıf ID'sini ekledik
       },
     };
 

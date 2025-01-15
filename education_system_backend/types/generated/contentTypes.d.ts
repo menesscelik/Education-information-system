@@ -384,7 +384,7 @@ export interface ApiAssigmentAssigment extends Struct.CollectionTypeSchema {
     Assigment_Date: Schema.Attribute.DateTime;
     AssigmentDescribe: Schema.Attribute.Text;
     AssigmentName: Schema.Attribute.String;
-    classes: Schema.Attribute.Relation<'oneToMany', 'api::class.class'>;
+    class: Schema.Attribute.Relation<'manyToOne', 'api::class.class'>;
     ClassID: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -415,8 +415,8 @@ export interface ApiClassClass extends Struct.CollectionTypeSchema {
   };
   attributes: {
     Aciklama: Schema.Attribute.Text;
-    assigment: Schema.Attribute.Relation<
-      'manyToOne',
+    assigments: Schema.Attribute.Relation<
+      'oneToMany',
       'api::assigment.assigment'
     >;
     Benzersiz: Schema.Attribute.String;

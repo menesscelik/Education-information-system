@@ -27,12 +27,6 @@
             "target": "api::register.register",
             "inversedBy": "classes"
         },
-        "assigment": {
-            "type": "relation",
-            "relation": "manyToOne",
-            "target": "api::assigment.assigment",
-            "inversedBy": "classes"
-        },
         "nots": {
             "type": "relation",
             "relation": "oneToMany",
@@ -44,6 +38,12 @@
             "relation": "manyToMany",
             "target": "api::studentlist.studentlist",
             "mappedBy": "classes"
+        },
+        "assigments": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::assigment.assigment",
+            "mappedBy": "class"
         }
     }
 }

@@ -21,14 +21,14 @@
         "AssigmentDescribe": {
             "type": "text"
         },
-        "classes": {
-            "type": "relation",
-            "relation": "oneToMany",
-            "target": "api::class.class",
-            "mappedBy": "assigment"
-        },
         "ClassID": {
             "type": "integer"
+        },
+        "class": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::class.class",
+            "inversedBy": "assigments"
         }
     }
 }

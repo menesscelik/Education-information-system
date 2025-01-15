@@ -57,6 +57,9 @@ const StudentsClasses = ({ setCurrentPage }) => {
 
   const handleHomeworkClick = (classItem) => {
     localStorage.setItem('SelectedClassDocumentId', classItem.documentId);
+    localStorage.setItem('SelectedClassUniqueCode', classItem.Benzersiz);
+    localStorage.setItem('selectedClassId', classItem.id);
+
     setCurrentPage('homeworkList');
 };
 

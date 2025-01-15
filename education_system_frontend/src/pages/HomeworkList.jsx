@@ -16,7 +16,7 @@ const HomeworkList = ({ setCurrentPage }) => {
           return;
         }
 
-        // API çağrısı: class.documentId'ye göre filtreleme
+        // API çağrısı: documentId'ye göre filtreleme
         const apiUrl = `http://localhost:1337/api/assigments?filters[class][documentId][$eq]=${documentId}&populate=class`;
         console.log('API çağrısı:', apiUrl);
 
@@ -67,14 +67,14 @@ const HomeworkList = ({ setCurrentPage }) => {
         <ul className="homework-list">
           {homeworks.map((homework) => (
             <li key={homework.id} className="homework-item">
-              <h3>{homework.attributes.AssigmentName}</h3>
-              <p>{homework.attributes.AssigmentDescribe}</p>
+              <h3>{homework.AssigmentName}</h3>
+              <p>{homework.AssigmentDescribe}</p>
               <p>
                 Teslim Tarihi:{' '}
-                {new Date(homework.attributes.Assigment_Date).toLocaleDateString('tr-TR')}
+                {new Date(homework.Assigment_Date).toLocaleDateString('tr-TR')}
               </p>
               <p>
-                İlişkili Sınıf: {homework.attributes.class?.Name || 'Belirtilmemiş'}
+                İlişkili Sınıf: {homework.class?.Name || 'Belirtilmemiş'}
               </p>
             </li>
           ))}
