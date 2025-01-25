@@ -131,4 +131,4 @@ Bu sistem, eğitmenlerin ve öğrencilerin eğitim süreçlerini dijital ortamda
 
 ## **GitHub Deposu**
 
-Projenin kaynak kodlarına GitHub üzerinden ulaşabilirsiniz: [Eğitim Bilgi Sistemi GitHub Deposu](https://github.com/menesscelik/Egitim-bilgi-sistemi.git)
+Projenin kaynak kodlarına GitHub üzerinden ulaşabilirsiniz: [Eğitim Bilgi Sistemi GitHub Deposu](https://github.com/menesscelik/Egitim-bilgi-sistemi.git) .
