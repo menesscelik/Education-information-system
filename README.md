@@ -128,3 +128,7 @@ Eğitim Yönetim Sistemi, öğrencilerin ve eğitmenlerin ihtiyaç duyduğu bir�
 ## **Neler Yapabilir?**
 
 Bu sistem, eğitmenlerin ve öğrencilerin eğitim süreçlerini dijital ortamda yönetmelerine olanak tanır. Eğitmenler sınıf oluşturabilir, ödev verebilir ve materyal yükleyebilirken, öğrenciler sınıflara katılabilir, ödevleri görüntüleyebilir ve materyalleri inceleyebilir. Admin kullanıcılar ise sistem yönetimi için çeşitli araçlara sahiptir.
+
+## **GitHub Deposu**
+
+Projenin kaynak kodlarına GitHub üzerinden ulaşabilirsiniz: [Eğitim Bilgi Sistemi GitHub Deposu](https://github.com/menesscelik/Egitim-bilgi-sistemi.git)
