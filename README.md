@@ -81,3 +81,50 @@ Eğitim Yönetim Sistemi, öğrencilerin ve eğitmenlerin ihtiyaç duyduğu bir�
 1. **Strapi Projesini Kurun**:
    ```bash
    npx create-strapi-app backend --quickstart
+
+```
+
+## **Projenin İndirilmesi ve Çalıştırılması**
+
+### **GitHub'dan İndirme**
+1. GitHub deposuna gidin ve "Code" butonuna tıklayın.
+2. "Download ZIP" seçeneği ile projeyi bilgisayarınıza indirin veya SSH/HTTPS ile klonlayın:
+   ```bash
+   git clone <repository-url>
+   ```
+
+### **Projenin Çalıştırılması**
+
+#### **Backend (Strapi) Kurulumu**
+1. Proje dizinine gidin:
+   ```bash
+   cd backend
+   ```
+2. Gerekli bağımlılıkları yükleyin:
+   ```bash
+   npm install
+   ```
+3. Strapi'yi başlatın:
+   ```bash
+   npm run develop
+   ```
+
+#### **Frontend (React) Kurulumu**
+1. Frontend dizinine gidin:
+   ```bash
+   cd education_system_frontend
+   ```
+2. Gerekli bağımlılıkları yükleyin:
+   ```bash
+   npm install
+   ```
+3. React uygulamasını başlatın:
+   ```bash
+   npm start
+   ```
+
+---
+
+## **Neler Yapabilir?**
+
+Bu sistem, eğitmenlerin ve öğrencilerin eğitim süreçlerini dijital ortamda yönetmelerine olanak tanır. Eğitmenler sınıf oluşturabilir, ödev verebilir ve materyal yükleyebilirken, öğrenciler sınıflara katılabilir, ödevleri görüntüleyebilir ve materyalleri inceleyebilir. Admin kullanıcılar ise sistem yönetimi için çeşitli araçlara sahiptir.
