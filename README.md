@@ -81,8 +81,7 @@ Eğitim Yönetim Sistemi, öğrencilerin ve eğitmenlerin ihtiyaç duyduğu bir�
 1. **Strapi Projesini Kurun**:
    ```bash
    npx create-strapi-app backend --quickstart
-
-```
+   ```
 
 ## **Projenin İndirilmesi ve Çalıştırılması**
 
@@ -98,7 +97,7 @@ Eğitim Yönetim Sistemi, öğrencilerin ve eğitmenlerin ihtiyaç duyduğu bir�
 #### **Backend (Strapi) Kurulumu**
 1. Proje dizinine gidin:
    ```bash
-   cd backend
+   cd education_system_backend
    ```
 2. Gerekli bağımlılıkları yükleyin:
    ```bash
@@ -120,7 +119,7 @@ Eğitim Yönetim Sistemi, öğrencilerin ve eğitmenlerin ihtiyaç duyduğu bir�
    ```
 3. React uygulamasını başlatın:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ---
