@@ -90,7 +90,7 @@ Eğitim Yönetim Sistemi, öğrencilerin ve eğitmenlerin ihtiyaç duyduğu bir�
 1. GitHub deposuna gidin ve "Code" butonuna tıklayın.
 2. "Download ZIP" seçeneği ile projeyi bilgisayarınıza indirin veya SSH/HTTPS ile klonlayın:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/menesscelik/Egitim-bilgi-sistemi.git
    ```
 
 ### **Projenin Çalıştırılması**
