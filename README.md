@@ -1,133 +1,134 @@
-# Eğitim Yönetim Sistemi
+# **Education Management System**
 
-Bu proje, eğitimciler ve öğrenciler için eğitim süreçlerini kolaylaştırmak ve dijital bir ortamda yönetim sağlamak amacıyla geliştirilmiştir. Sistem, kullanıcıların sınıf oluşturma, ödev verme, materyal yükleme, sınıfa katılım ve daha birçok işlemi gerçekleştirebilmesini sağlar.
-
----
-
-## **Proje Özeti**
-
-Eğitim Yönetim Sistemi, öğrencilerin ve eğitmenlerin ihtiyaç duyduğu birçok işlemi dijital olarak yapabilmesini amaçlar. Sistem, eğitmenlerin ders notları ve ödev paylaşmasını, öğrencilerin ise bu materyalleri görüntüleyip ödev teslim etmesini sağlar. Ayrıca admin kullanıcı, sistem yönetimi için çeşitli araçlara sahiptir.
+This project is developed to facilitate educational processes for educators and students, providing a digital platform for efficient management. The system allows users to create classes, assign homework, upload materials, join classes, and perform various other tasks.
 
 ---
 
-## **Özellikler**
+## **Project Overview**
 
-### **Eğitmen**
-- Sınıf oluşturma ve kod paylaşımı.
-- Ödev oluşturma ve Google Calendar entegrasyonu.
-- Ders notu ve materyal yükleme.
+The Education Management System aims to enable students and educators to carry out essential educational tasks digitally. Educators can share lecture notes and assignments, while students can view these materials and submit their assignments. Additionally, the admin user has various tools for system management.
 
-### **Öğrenci**
-- Sınıf kodu ile sınıfa katılma.
-- Ödevleri görüntüleme ve teslim tarihi takibi.
-- Materyalleri indirip inceleme.
+---
+
+## **Features**
+
+### **Educator**
+- Create classes and share class codes.
+- Assign homework with Google Calendar integration.
+- Upload lecture notes and materials.
+
+### **Student**
+- Join classes using a class code.
+- View assignments and track deadlines.
+- Download and review course materials.
 
 ### **Admin**
-- Kullanıcı yönetimi (silme, düzenleme).
-- Sınıf yönetimi (silme, düzenleme).
+- Manage users (delete, edit).
+- Manage classes (delete, edit).
 
 ---
 
-## **Hedef Kullanıcı Kitlesi**
-- **Eğitmenler:** Ders oluşturma, ödev verme ve materyal paylaşımı.
-- **Öğrenciler:** Sınıflara katılma, ödevleri görüntüleme ve materyalleri indirme.
-- **Admin:** Kullanıcı ve sınıf yönetimi.
+## **Target User Group**
+- **Educators:** Create courses, assign homework, and share materials.
+- **Students:** Join classes, view assignments, and download materials.
+- **Admin:** Manage users and classes.
 
 ---
 
-## **Kullanılan Teknolojiler**
+## **Technologies Used**
 
 ### **Frontend**
-- **React.js**: Kullanıcı arayüzü geliştirme.
-- **CSS**: Kullanıcı dostu ve responsive tasarım.
-- **Google reCAPTCHA API**: Güvenlik doğrulaması.
+- **React.js**: For user interface development.
+- **CSS**: For user-friendly and responsive design.
+- **Google reCAPTCHA API**: For security verification.
 
 ### **Backend**
-- **Strapi**: İçerik yönetim sistemi.
-- **SQLite**: Veritabanı (diğer veritabanlarıyla değiştirilebilir).
-- **Google Calendar API**: Ödev teslim tarihlerini öğrencilerin takvimine entegre etme.
-- **bcryptjs**: Şifre hashleme.
+- **Strapi**: Content Management System.
+- **SQLite**: Database (can be replaced with other databases).
+- **Google Calendar API**: For integrating assignment deadlines into students’ calendars.
+- **bcryptjs**: For password hashing.
 
 ---
 
-## **Kullanıcı Rolleri**
+## **User Roles**
 
-### **Eğitmen**
-- Sınıf oluşturabilir ve kod paylaşabilir.
-- Ödev ve ders materyali yükleyebilir.
-- Öğrenci listesi görüntüleyebilir.
+### **Educator**
+- Can create classes and share codes.
+- Can upload assignments and course materials.
+- Can view the student list.
 
-### **Öğrenci**
-- Sınıf kodu ile sınıfa katılabilir.
-- Materyal ve ödevleri görüntüleyebilir.
-- Ödevlerin teslim tarihini Google Calendar ile takip edebilir.
+### **Student**
+- Can join classes using a class code.
+- Can view materials and assignments.
+- Can track assignment deadlines via Google Calendar.
 
 ### **Admin**
-- Kullanıcıları silebilir ve düzenleyebilir.
-- Sınıfları yönetebilir.
+- Can delete and edit users.
+- Can manage classes.
 
 ---
 
-## **Kurulum**
+## **Installation**
 
-### **1. Gereksinimler**
-- **Node.js**: [Node.js İndir](https://nodejs.org/)
-- **Strapi**: [Strapi Kurulumu](https://strapi.io/)
-- **Google API Key**: Google Calendar ve reCAPTCHA entegrasyonu için gerekli.
+### **1. Requirements**
+- **Node.js**: [Download Node.js](https://nodejs.org/)
+- **Strapi**: [Strapi Installation](https://strapi.io/)
+- **Google API Key**: Required for Google Calendar and reCAPTCHA integration.
 
 ---
 
 ### **2. Backend (Strapi)**
-1. **Strapi Projesini Kurun**:
+1. **Install Strapi Project**:
    ```bash
    npx create-strapi-app backend --quickstart
    ```
 
-## **Projenin İndirilmesi ve Çalıştırılması**
+## **Downloading and Running the Project**
 
-### **GitHub'dan İndirme**
-1. GitHub deposuna gidin ve "Code" butonuna tıklayın.
-2. "Download ZIP" seçeneği ile projeyi bilgisayarınıza indirin veya SSH/HTTPS ile klonlayın:
+### **Download from GitHub**
+1. Visit the GitHub repository and click the "Code" button.
+2. Download the project as a ZIP file or clone it using SSH/HTTPS:
    ```bash
    git clone https://github.com/menesscelik/Egitim-bilgi-sistemi.git
    ```
 
-### **Projenin Çalıştırılması**
+### **Running the Project**
 
-#### **Backend (Strapi) Kurulumu**
-1. Proje dizinine gidin:
+#### **Backend (Strapi) Setup**
+1. Navigate to the project directory:
    ```bash
    cd education_system_backend
    ```
-2. Gerekli bağımlılıkları yükleyin:
+2. Install dependencies:
    ```bash
    npm install
    ```
-3. Strapi'yi başlatın:
+3. Start Strapi:
    ```bash
    npm run develop
    ```
 
-#### **Frontend (React) Kurulumu**
-1. Frontend dizinine gidin:
+#### **Frontend (React) Setup**
+1. Navigate to the frontend directory:
    ```bash
    cd education_system_frontend
    ```
-2. Gerekli bağımlılıkları yükleyin:
+2. Install dependencies:
    ```bash
    npm install
    ```
-3. React uygulamasını başlatın:
+3. Start the React application:
    ```bash
    npm run dev
    ```
 
 ---
 
-## **Neler Yapabilir?**
+## **What Can It Do?**
 
-Bu sistem, eğitmenlerin ve öğrencilerin eğitim süreçlerini dijital ortamda yönetmelerine olanak tanır. Eğitmenler sınıf oluşturabilir, ödev verebilir ve materyal yükleyebilirken, öğrenciler sınıflara katılabilir, ödevleri görüntüleyebilir ve materyalleri inceleyebilir. Admin kullanıcılar ise sistem yönetimi için çeşitli araçlara sahiptir.
+This system allows educators and students to manage their educational processes digitally. Educators can create classes, assign homework, and upload materials, while students can join classes, view assignments, and review materials. Admin users have various tools for system management.
 
-## **GitHub Deposu**
+## **GitHub Repository**
 
-Projenin kaynak kodlarına GitHub üzerinden ulaşabilirsiniz: [Eğitim Bilgi Sistemi GitHub Deposu](https://github.com/menesscelik/Egitim-bilgi-sistemi.git) .
+You can access the source code of the project on GitHub: [Education Management System GitHub Repository](https://github.com/menesscelik/Egitim-bilgi-sistemi.git)
+
